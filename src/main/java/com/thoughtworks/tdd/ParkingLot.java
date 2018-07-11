@@ -15,13 +15,14 @@ public class ParkingLot {
        if (size==0){
            throw new ParkingLotFullException("should park successfully");
        }
+       this.size++;
        Receipt receipt = new Receipt();
        this.parkedCars.put(receipt,car);
        return receipt;
     }
 
     public Car unPark(Receipt receipt) {
-        this.size++;
+        this.size--;
         return this.parkedCars.get(receipt);
 
     }
