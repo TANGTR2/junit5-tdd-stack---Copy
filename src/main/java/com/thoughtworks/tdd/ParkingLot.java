@@ -25,4 +25,11 @@ public class ParkingLot {
         return this.parkedCars.get(receipt);
 
     }
+
+    public boolean isFull() {
+        if(this.size == 0)
+            return true;
+        else
+            return false;
+    }
 }

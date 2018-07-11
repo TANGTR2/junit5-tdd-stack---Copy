@@ -50,4 +50,11 @@ public class ParkingLotTest {
 
         assertThat(parkingLot.unPark(anotherReceipt), not(theCar));
     }
+
+    @Test
+    public void should_be_true_when_call_isFull_given_parking_lot_is_full(){
+        ParkingLot parkingLot = new ParkingLot(0);
+
+        assertThat(parkingLot.isFull(), is(true));
+    }
 }
