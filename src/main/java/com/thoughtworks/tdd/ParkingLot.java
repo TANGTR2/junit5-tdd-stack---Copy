@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
+
     private int size;
-    public Map<Receipt,Car> parkedCars = new HashMap<>();
+    private Map<Receipt,Car> parkedCars = new HashMap<>();
 
     public ParkingLot(int size) {
         this.size = size;
@@ -33,4 +34,6 @@ public class ParkingLot {
         else
             return false;
     }
+
+
 }
