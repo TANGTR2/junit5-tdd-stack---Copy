@@ -101,12 +101,24 @@ public class ParkingLotTest {
         ArrayList<ParkingLot> parkManage = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);
         parkManage.add(parkingLot1);
+        Car car = new Car();
         ParkBoy parkBoy = new ParkBoy(parkManage);
-        //when
         try {
-            parkBoy.parking(parkManage);
+            parkBoy.parking(car);
         } catch (ParkingLotFullException exception) {
             fail("should park successfully");
         }
+    }
+
+    @Test
+    public void should_unparking_one_car_when_call_ParkBoy_unparking_given_a_full_parking_lot(){
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLots.add(parkingLot);
+        Car car = new Car();
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        Receipt receipt = parkBoy.parking(car);
+        assertThat(parkBoy.unparking(receipt), is(parkingLot.unPark(receipt)));
     }
 }
