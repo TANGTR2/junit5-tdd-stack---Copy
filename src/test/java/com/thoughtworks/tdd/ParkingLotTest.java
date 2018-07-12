@@ -160,4 +160,36 @@ public class ParkingLotTest {
         assertThat(parkBoy.unparking(receipt2), is(parkingLot2.unPark(receipt2)));
     }
 
+    @Test
+    public void should_parking_car_by_order_when_call_ParkBoy_parking(){
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        Car car1 = new Car();Car car2 = new Car();
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        Receipt receipt1 = parkBoy.parking(car1);
+
+        assertThat(parkBoy.unparking(receipt1), is(parkingLot1.unPark(receipt1)));
+    }
+
+    @Test
+    public void should_not_unparking_car_by_wrong_recript_when_call_ParkBoy_unparking(){
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+        Car car1 = new Car();
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        Receipt receipt1 = parkBoy.parking(car1);
+        Receipt wrongReceipt = new Receipt();
+        try {
+            parkBoy.unparking(wrongReceipt);
+        } catch (ParkingLotFullException exception) {
+            fail("should unpark successfully");
+        }
+    }
+
 }
