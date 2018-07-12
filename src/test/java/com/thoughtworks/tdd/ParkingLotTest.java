@@ -119,6 +119,45 @@ public class ParkingLotTest {
         Car car = new Car();
         ParkBoy parkBoy = new ParkBoy(parkingLots);
         Receipt receipt = parkBoy.parking(car);
+
         assertThat(parkBoy.unparking(receipt), is(parkingLot.unPark(receipt)));
     }
+
+    @Test
+    public void should_parking_two_car_to_two_parkingLot_when_call_ParkBoy_parking_given_two_notfull_parking_lot() {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        try {
+            parkBoy.parking(car1);
+            parkBoy.parking(car2);
+        } catch (ParkingLotFullException exception) {
+            fail("should park successfully");
+        }
+    }
+
+    @Test
+    public void should_unparking_two_car_from_two_parkingLot_when_call_ParkBoy_unparking_given_two_full_parking_lot() {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        Car car1 = new Car();Car car2 = new Car();
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        Receipt receipt1 = parkBoy.parking(car1);
+        Receipt receipt2 = parkBoy.parking(car2);
+
+        assertThat(parkBoy.unparking(receipt1), is(parkingLot1.unPark(receipt1)));
+        assertThat(parkBoy.unparking(receipt2), is(parkingLot2.unPark(receipt2)));
+    }
+
 }
