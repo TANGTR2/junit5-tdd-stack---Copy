@@ -96,26 +96,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_be_true_when_call_ParkBoy_given_have_notfull_parking_lot(){
+    public void should_parking_one_car_when_call_ParkBoy_parking_given_a_notfull_parking_lot(){
+        //given
         ArrayList<ParkingLot> parkManage = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(0);
         parkManage.add(parkingLot1);
-        parkManage.add(parkingLot2);
         ParkBoy parkBoy = new ParkBoy(parkManage);
-        boolean ishave = parkBoy.isHaveNotFullParkingLot(parkManage);
-        assertThat(ishave, is(true));
-    }
-
-    @Test
-    public void should_be_false_when_call_ParkBoy_given_not_have_notfull_parking_lot(){
-        ArrayList<ParkingLot> parkManage = new ArrayList<>();
-        ParkingLot parkingLot1 = new ParkingLot(0);
-        ParkingLot parkingLot2 = new ParkingLot(0);
-        parkManage.add(parkingLot1);
-        parkManage.add(parkingLot2);
-        ParkBoy parkBoy = new ParkBoy(parkManage);
-        boolean ishave = parkBoy.isHaveNotFullParkingLot(parkManage);
-        assertThat(ishave, is(false));
+        //when
+        try {
+            parkBoy.parking(parkManage);
+        } catch (ParkingLotFullException exception) {
+            fail("should park successfully");
+        }
     }
 }

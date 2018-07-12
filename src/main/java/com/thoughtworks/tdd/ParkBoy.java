@@ -1,7 +1,6 @@
 package com.thoughtworks.tdd;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ParkBoy {
     private ArrayList<ParkingLot> parkManage = new ArrayList<>();
@@ -9,13 +8,14 @@ public class ParkBoy {
 
     }
 
-    public boolean isHaveNotFullParkingLot(ArrayList<ParkingLot> parkManage) {
-        for(ParkingLot parkingLot:parkManage){
-            if(parkingLot.isFull())
+    public Receipt parking(ArrayList<ParkingLot> parkManage) {
+        Receipt receipt = new Receipt();
+        for(ParkingLot parkingLot : parkManage){
+            if(!parkingLot.isFull()){
+                receipt = parkingLot.park(new Car());
+            }else
                 continue;
-            else
-                return true;
         }
-        return false;
+        return receipt;
     }
 }
