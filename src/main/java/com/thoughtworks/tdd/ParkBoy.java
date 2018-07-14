@@ -3,34 +3,29 @@ package com.thoughtworks.tdd;
 import java.util.ArrayList;
 
 public class ParkBoy {
+
     public ArrayList<ParkingLot> parkingLots ;
+
     public Receipt receipt;
 
-    public ParkBoy(ArrayList<ParkingLot> parkManage) {
-        setParkManage(parkManage);
+    public ParkBoy(ArrayList<ParkingLot> parkingLots) {
+        setParkingLots(parkingLots);
     }
 
-    public Receipt getReceipt() {
-        return receipt;
-    }
-    public void setReceipt(Receipt receipt) {
-        this.receipt = receipt;
-    }
-
-
-    public void setParkManage(ArrayList<ParkingLot> parkManage) {
-        this.parkingLots = parkManage;
-    }
-    public ArrayList<ParkingLot> getParkManage() {
+    public ArrayList<ParkingLot> getParkingLots() {
         return parkingLots;
+    }
+
+    public void setParkingLots(ArrayList<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 
     public Receipt parking(Car car) {
         for(ParkingLot parkingLot : parkingLots){
             if(!parkingLot.isFull()){
-                receipt = parkingLot.park(car);break;
+                receipt = parkingLot.park(car);
+                break;
             }
-
         }
         return receipt;
     }
