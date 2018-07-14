@@ -13,4 +13,13 @@ public class PrintContent {
         if(select != 1 && select != 2)
             System.out.println("非法指令，请查证后再输");
     }
+
+    public void printParkingContent(ParkBoy parkBoy){
+        if(parkBoy.getIsAllFullOfParkinglots()){
+            System.out.println("车已停满，请晚点再来");
+        }
+        else
+            System.out.println("请输入车牌号:");
+    }
+
 }
