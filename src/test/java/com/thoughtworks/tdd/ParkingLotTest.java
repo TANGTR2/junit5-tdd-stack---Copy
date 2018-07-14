@@ -195,5 +195,20 @@ public class ParkingLotTest {
         assertThat(parkBoy.unparking(wrongReceipt), not(car1));
     }
 
+    @Test
+    public void should_be_true_when_call_isAllFull_given_parkinglots_is_full() {
+        //given
+        ParkingLot parkingLot1 = mock(ParkingLot.class);
+        ParkingLot parkingLot2 = mock(ParkingLot.class);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        when(parkingLot1.isFull()).thenReturn(true);
+        when(parkingLot2.isFull()).thenReturn(true);
+        //when
+        ParkBoy parkBoy = new ParkBoy(parkingLots);
+        //then
+        assertThat(parkBoy.getIsAllFullOfParkinglots(), is(true));
+    }
 
 }

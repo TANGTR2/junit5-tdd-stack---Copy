@@ -39,4 +39,12 @@ public class ParkBoy {
         return car;
     }
 
+    public boolean getIsAllFullOfParkinglots() {
+        for(ParkingLot parkingLot : parkingLots){
+            if(!parkingLot.isFull()){
+                return false;
+            }
+        }
+        return true;
+    }
 }
