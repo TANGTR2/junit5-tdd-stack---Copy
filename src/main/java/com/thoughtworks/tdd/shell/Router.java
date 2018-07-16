@@ -31,6 +31,16 @@ public class Router {
             case "root":
                 handleRootPage(currentPage,request.getCommand());
                 break;
+            case "parkinglot":
+                handleParkinglotPage(currentPage,request.getCommand());
+        }
+    }
+
+    public void handleParkinglotPage(String currentPage, String command) {
+        switch (command){
+            case "1":
+                setCurrentPage(controler.parkinglotPage());
+                break;
         }
     }
 
@@ -55,7 +65,8 @@ public class Router {
                 setCurrentPage("main");
                 break;
             case "2":
-                setCurrentPage(controler.unparkPage());
+                controler.showParkinglotPage();
+                setCurrentPage("parkinglot");
                 break;
             default:
                 setCurrentPage(controler.wrongSelect());

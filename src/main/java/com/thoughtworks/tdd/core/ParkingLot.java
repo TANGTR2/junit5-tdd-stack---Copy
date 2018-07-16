@@ -4,9 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot {
-
+    private String parklotId;
+    private String parkinglotName;
     private int size;
-    public Map<Receipt,Car> parkedCars = new HashMap<>();
+    private int hadParkCarNum;
+
+    public int getHadParkCarNum() {
+        return hadParkCarNum;
+    }
+    public void setHadParkCarNum(int hadParkCarNum) {
+        this.hadParkCarNum = hadParkCarNum;
+    }
+
+    public String getParklotId() {
+        return parklotId;
+    }
+    public void setParklotId(String parklotId) {
+        this.parklotId = parklotId;
+    }
+
+    public String getParkinglotName() {
+        return parkinglotName;
+    }
+    public void setParkinglotName(String parkinglotName) {
+        this.parkinglotName = parkinglotName;
+    }
 
     public int getSize() {
         return size;
@@ -14,6 +36,8 @@ public class ParkingLot {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public Map<Receipt,Car> parkedCars = new HashMap<>();
 
     public void setParkedCars(Map<Receipt, Car> parkedCars) {
         this.parkedCars = parkedCars;
@@ -52,5 +76,4 @@ public class ParkingLot {
         else
             return false;
     }
-
 }

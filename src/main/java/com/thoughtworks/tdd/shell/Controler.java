@@ -2,17 +2,20 @@ package com.thoughtworks.tdd.shell;
 
 import com.thoughtworks.tdd.core.Car;
 import com.thoughtworks.tdd.core.ParkBoy;
+import com.thoughtworks.tdd.core.ParkinglotManager;
 import com.thoughtworks.tdd.core.Receipt;
 
 public class Controler {
     private Request request;
     private ParkBoy parkBoy;
     private Response response;
+    private  ParkinglotManager parkinglotManager;
 
-    public Controler(Request request,ParkBoy parkBoy,Response response){
+    public Controler(Request request,ParkBoy parkBoy,Response response,ParkinglotManager parkinglotManager){
         this.request = request;
         this.parkBoy = parkBoy;
         this.response = response;
+        this.parkinglotManager = parkinglotManager;
     }
 
     private String currentPage;
@@ -81,5 +84,16 @@ public class Controler {
 
     public void getRootPage() {
         response.send("1.停车服务\n" + "2.停车场管理\n" + "请输入您要进入的页面：");
+    }
+
+    public void showParkinglotPage() {
+        response.send("1.查看停车场详情\n" + "2.添加停车场\n" + "3.删除停车场");
+    }
+
+    public String parkinglotPage() {
+        response.send(parkinglotManager.getParkingLotsInfo());
+        currentPage = "root";
+        this.getRootPage();
+        return currentPage;
     }
 }
