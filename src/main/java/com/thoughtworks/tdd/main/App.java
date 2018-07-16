@@ -20,8 +20,10 @@ public class App {
         Request request = new Request();
         Response response = new Response();
         Controler controler = new Controler(request,parkBoy,response);
-        controler.getMainPage();
-        Router router = new Router(controler,"main");
+        //controler.getMainPage();
+        controler.getRootPage();
+        //Router router = new Router(controler,"main");
+        Router router = new Router(controler,"root");
         Scanner in = new Scanner(System.in);
 
         try {

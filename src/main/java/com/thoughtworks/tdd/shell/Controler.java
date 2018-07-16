@@ -54,8 +54,8 @@ public class Controler {
 
     public String wrongSelect(){
         response.send("非法指令，请查证后再输");
-        this.getMainPage();
-        currentPage = "main";
+        this.getRootPage();
+        currentPage = "root";
         return currentPage;
     }
 
@@ -77,5 +77,9 @@ public class Controler {
         this.getMainPage();
         currentPage = "main";
         return currentPage;
+    }
+
+    public void getRootPage() {
+        response.send("1.停车服务\n" + "2.停车场管理\n" + "请输入您要进入的页面：");
     }
 }

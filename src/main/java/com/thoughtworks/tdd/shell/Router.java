@@ -28,6 +28,9 @@ public class Router {
             case "unpark":
                 setCurrentPage(controler.handleunparkPage());
                 break;
+            case "root":
+                handleRootPage(currentPage,request.getCommand());
+                break;
         }
     }
 
@@ -42,6 +45,22 @@ public class Router {
             default:
                 setCurrentPage(controler.wrongSelect());
                 break;
+        }
+    }
+
+    private void handleRootPage(String status, String command) {
+        switch (command){
+            case "1":
+                controler.getMainPage();
+                setCurrentPage("main");
+                break;
+            case "2":
+                setCurrentPage(controler.unparkPage());
+                break;
+            default:
+                setCurrentPage(controler.wrongSelect());
+                break;
+
         }
     }
 }
