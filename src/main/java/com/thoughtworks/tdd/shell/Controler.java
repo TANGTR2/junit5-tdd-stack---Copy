@@ -1,9 +1,8 @@
 package com.thoughtworks.tdd.shell;
 
-import com.thoughtworks.tdd.core.Car;
-import com.thoughtworks.tdd.core.ParkBoy;
-import com.thoughtworks.tdd.core.ParkinglotManager;
-import com.thoughtworks.tdd.core.Receipt;
+import com.thoughtworks.tdd.core.*;
+
+import static java.lang.Integer.parseInt;
 
 public class Controler {
     private Request request;
@@ -70,15 +69,15 @@ public class Controler {
 
     public String handleParkPage() {
         this.park();
-        this.getMainPage();
-        currentPage = "main";
+        this.getRootPage();
+        currentPage = "root";
         return currentPage;
     }
 
     public String handleunparkPage() {
         this.unpark();
-        this.getMainPage();
-        currentPage = "main";
+        this.getRootPage();
+        currentPage = "root";
         return currentPage;
     }
 
@@ -95,5 +94,57 @@ public class Controler {
         currentPage = "root";
         this.getRootPage();
         return currentPage;
+    }
+
+    public String addParkinglotPage() {
+        response.send("请输入你要添加的停车场信息（格式为：名称，车位）：");
+        currentPage = "addParkinglot";
+        return  currentPage;
+    }
+
+    public String[] handleInformation(String command) {
+        String[] div = command.split(",");
+        return div;
+    }
+
+    public String addParkinglot() {
+        String[] div = handleInformation(request.getCommand());
+        parkinglotManager.addParkingLot(div[0],parseInt(div[1]));
+        response.send("停车场添加成功！");
+        this.getRootPage();
+        currentPage = "root";
+        return currentPage;
+    }
+
+    public String removeParkinglotPage() {
+        response.send("请输入需要删除的被管理停车场ID:");
+        currentPage = "removeParkinglot";
+        return  currentPage;
+    }
+
+    public String removeParkinglot(){
+        getDeleteParkingLot(parkBoy,request.getCommand());
+        this.getRootPage();
+        currentPage = "root";
+        return currentPage;
+    }
+
+    public void getDeleteParkingLot(ParkBoy parkBoy, String command) {
+        boolean isExist=false;
+        for (ParkingLot parkingLot:parkBoy.getParkingLots()){
+            if(parkingLot.getParklotId().equals(command) && parkingLot.getParkedCars().size()==0){
+                isExist = true;
+                parkBoy.removeParkingLot(parkingLot);
+                response.send("停车场删除成功！");
+                break;
+            }else if (parkingLot.getParklotId().equals(command)){
+                isExist = true;
+                response.send("停车场删除失败，原因：此停车场中，依然停有汽车，无法删除！");
+                break;
+            }
+        }
+        if(!isExist){
+            response.send("停车场删除失败，原因：此停车场不存在！");
+        }
     }
 }

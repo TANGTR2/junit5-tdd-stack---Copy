@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
         ParkingLot parkingLot1 = new ParkingLot(20);
         parkingLot1.setParklotId("001");
@@ -22,26 +22,20 @@ public class App {
         parkingLot2.setParklotId("002");
         parkingLot2.setParkinglotName("北方停车场");
         parkingLot2.setHadParkCarNum(2);
-        parkingLots.add(parkingLot1);parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
         ParkBoy parkBoy = new ParkBoy(parkingLots);
-        ParkinglotManager parkinglotManager = new ParkinglotManager(parkBoy,parkingLots);
+        ParkinglotManager parkinglotManager = new ParkinglotManager(parkBoy, parkingLots);
         Request request = new Request();
         Response response = new Response();
-        Controler controler = new Controler(request,parkBoy,response,parkinglotManager);
-        //controler.getMainPage();
+        Controler controler = new Controler(request, parkBoy, response, parkinglotManager);
         controler.getRootPage();
-        //Router router = new Router(controler,"main");
-        Router router = new Router(controler,"root");
+        Router router = new Router(controler, "root");
         Scanner in = new Scanner(System.in);
-
-        try {
-            while(true){
-                String command = in.nextLine();
-                request.setCommand(command);
-                router.rocessRequest(request);
-            }
-        } catch (Exception e){
-            System.err.println("App end!");
+        while (true) {
+            String command = in.nextLine();
+            request.setCommand(command);
+            router.rocessRequest(request);
         }
     }
 }

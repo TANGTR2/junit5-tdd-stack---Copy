@@ -1,5 +1,7 @@
 package com.thoughtworks.tdd.shell;
 
+import java.util.List;
+
 public class Router {
     private String currentPage;
     private Controler controler;
@@ -33,6 +35,11 @@ public class Router {
                 break;
             case "parkinglot":
                 handleParkinglotPage(currentPage,request.getCommand());
+                break;
+            case "addParkinglot":
+                setCurrentPage(controler.addParkinglot());
+            case"removeParkinglot" :
+                setCurrentPage(controler.removeParkinglot());
         }
     }
 
@@ -40,6 +47,12 @@ public class Router {
         switch (command){
             case "1":
                 setCurrentPage(controler.parkinglotPage());
+                break;
+            case "2":
+                setCurrentPage(controler.addParkinglotPage());
+                break;
+            case "3":
+                setCurrentPage(controler.removeParkinglotPage());
                 break;
         }
     }

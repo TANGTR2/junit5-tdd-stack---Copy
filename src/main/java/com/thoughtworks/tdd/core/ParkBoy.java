@@ -1,6 +1,7 @@
 package com.thoughtworks.tdd.core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ParkBoy {
 
@@ -10,6 +11,10 @@ public class ParkBoy {
 
     public ParkBoy(ArrayList<ParkingLot> parkingLots) {
         setParkingLots(parkingLots);
+    }
+
+    public void removeParkingLot(ParkingLot parkingLot){
+        parkingLots.remove(parkingLot);
     }
 
     public ArrayList<ParkingLot> getParkingLots() {
